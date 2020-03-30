@@ -23,7 +23,39 @@ class App extends Component {
       ]
     });
   };
-  
+
+  // switchNameHandler(newName)  {
+  //   // console.log('Was clicked!');
+  //   // DON'T DO THIS: this.state.persons[0].name = 'Maximilian';
+  //   this.setState({
+  //     persons: [
+  //       { name: newName, age: 28 },
+  //       { name: 'Manu', age: 29 },
+  //       { name: 'Stephanie', age: 27 }
+  //     ]
+  //   });
+  // };
+  // nameChangeHandler = (event)=>{
+  //   this.setState({
+  //     persons: [
+  //       { name: event.target.value, age: 28 },
+  //       { name: 'Manu', age: 29 },
+  //       { name: 'Stephanie', age: 27 }
+  //     ]
+  //   })
+  // }
+
+  // Closure for customizer different function
+  nameChangeHandler = (order)=>{
+    return ((event)=>{
+      // Copy the value from state
+      let newState={...this.state}
+      //  Change the values in new variable
+      newState.persons[order].name = event.target.value
+      // Set state
+      this.setState(newState)
+    })
+  } 
   render() {
     console.log("I am here")
     return (
@@ -35,18 +67,21 @@ class App extends Component {
           name={this.state.persons[0].name}
           age={this.state.persons[0].age}
           click={this.switchNameHandler.bind(this,"Maximilian" )}
+          nameChangeHandler={this.nameChangeHandler(0).bind(this)}
+
         />
         <Person
           name={this.state.persons[1].name}
           age={this.state.persons[1].age}
-          click={this.switchNameHandler}
-        >
+          nameChangeHandler={this.nameChangeHandler(1).bind(this)}
+          >
           My Hobbies: Racing
         </Person>
         <Person
           name={this.state.persons[2].name}
           age={this.state.persons[2].age}
           click={this.switchNameHandler}
+          nameChangeHandler={this.nameChangeHandler(2).bind(this)}
         />
       </div>
     );
