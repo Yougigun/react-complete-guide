@@ -47,15 +47,20 @@ class App extends Component {
   // }
 
   // Closure for customizer different function
-  nameChangeHandler = (order)=>{
-    return ((event)=>{
+  nameChangeHandler = (event,id)=>{
+      const personIndex = this.state.persons.findIndex(p => {
+        return p.id === id;
+      });
       // Copy the value from state
-      let newState={...this.state}
+      const person = {...this.state.persons[personIndex]};
+      // const person =Object.assign({},this.state.persons[personIndex])
       //  Change the values in new variable
-      newState.persons[order].name = event.target.value
+      person.name = event.target.value ;
+
+      const persons = [...this.state.persons]
+      persons[personIndex] = person
       // Set state
-      this.setState(newState)
-    })
+      this.setState({persons:persons}) ;
   } 
 
   togglePeronsHandler = ()=>{ 
@@ -73,7 +78,10 @@ class App extends Component {
               click = {()=>this.deletePersonHandler(index)}
               name={person.name}
               age = {person.age}
-              key = {person.id} />
+              key = {person.id}
+              // changed = {(event)=>this.nameChangeHandler(event)}
+              changed = {(event)=>this.nameChangeHandler(event,person.id)}
+               />
           })}
       </div>
       );

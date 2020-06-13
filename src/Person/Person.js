@@ -6,7 +6,10 @@ const person = ( props ) => {
             <p onClick={props.click}> I'm {props.name} and I am {props.age} years old!</p>
             <p>{props.children}</p>
             {/* Set onChange to set new state and value to show from start */}
-            <input type="text" onChange={props.nameChangeHandler} value={props.name} />
+            <input type="text" 
+            onChange={props.changed} 
+            value={props.name} 
+            />
         </div>
     )
 };
