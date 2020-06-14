@@ -104,13 +104,19 @@ class App extends Component {
     };
 
     const [persons,newStyle] = this.ifShowPerons(style) ;
-    console.log(newStyle)
 
+    const classes = [];
+    if (this.state.persons.length<=2){
+      classes.push("red"); // classes = ["red"]
+    }
+    if (this.state.persons.length <=1){
+      classes.push("bold") //vclasses = ['red','bold']
+    }
 
     return (
       <div className="App">
         <h1>Hi, I'm a React App</h1>
-        <p>This is really working!</p>
+        <p className={classes.join(" ")}>This is really working!</p>
         <button 
           style={newStyle}
           onClick={this.togglePeronsHandler}>Toggle Persons</button>
