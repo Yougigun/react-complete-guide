@@ -68,9 +68,12 @@ class App extends Component {
      this.setState(state)
   }
 
-  ifShowPerons = () => {
+  ifShowPerons = (style) => {
     let persons =null ;
+    let newStyle = {...style} ;
     if (this.state.showPersons === true){
+       
+      newStyle.backgroundColor="red"
       persons=(
         <div >
           {this.state.persons.map((person,index) =>{
@@ -86,20 +89,22 @@ class App extends Component {
       </div>
       );
     };
-    return persons
+    return [persons,newStyle]
   }
 
   render() {
     console.log("I am here")
     const style = {
-      backgroundColor:"white",
+      backgroundColor:"green",
+      color:"white",
       font:"inferit",
       border:"1px solid blue",
       padding:"8px",
       cursor:"pointer"
     };
 
-    let persons = this.ifShowPerons() ;
+    const [persons,newStyle] = this.ifShowPerons(style) ;
+    console.log(newStyle)
 
 
     return (
@@ -107,7 +112,7 @@ class App extends Component {
         <h1>Hi, I'm a React App</h1>
         <p>This is really working!</p>
         <button 
-          style={style}
+          style={newStyle}
           onClick={this.togglePeronsHandler}>Toggle Persons</button>
         {
           persons
