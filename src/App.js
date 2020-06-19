@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Radium from "radium";
 import './App.css';
 import Person from './Person/Person';
 
@@ -73,7 +74,11 @@ class App extends Component {
     let newStyle = {...style} ;
     if (this.state.showPersons === true){
        
-      newStyle.backgroundColor="red"
+      newStyle.backgroundColor="darkred"
+      newStyle[":hover"] = {
+        backgroundColor:"red",
+        color:"black",
+      }
       persons=(
         <div >
           {this.state.persons.map((person,index) =>{
@@ -100,7 +105,11 @@ class App extends Component {
       font:"inferit",
       border:"1px solid blue",
       padding:"8px",
-      cursor:"pointer"
+      cursor:"pointer",
+      ":hover":{
+        backgroundColor:"lightgreen",
+        color:"black",
+      }
     };
 
     const [persons,newStyle] = this.ifShowPerons(style) ;
@@ -130,4 +139,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Radium(App);
