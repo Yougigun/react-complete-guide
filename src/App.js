@@ -5,14 +5,14 @@ import Person from './Person/Person';
 import styled from 'styled-components';
 
 const StyledButton = styled.button`
-                                  background-color: green;
+                                  background-color: ${props=>props.alt ? 'darkred':"green"};
                                   color: white ;
                                   font: inferit ;
                                   border: 1px solid blue ;
                                   padding: 8px ;
                                   cursor: pointer ;
                                   &:hover{
-                                    background-color: lightgreen ;
+                                    background-color: ${props=>props.alt ? 'red':"lightgreen"} ;
                                     color: black ;
                                   }
                                   `;
@@ -142,6 +142,7 @@ class App extends Component {
         <p className={classes.join(" ")}>This is really working!</p>
         <StyledButton 
           // style={newStyle}
+          alt = {this.state.showPersons}
           onClick={this.togglePeronsHandler}>Toggle Persons</StyledButton>
         {
           persons
