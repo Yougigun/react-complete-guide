@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
 import styled from 'styled-components';
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 
 const StyledButton = styled.button`
                                   background-color: ${props=>props.alt ? 'darkred':"green"};
@@ -63,7 +64,7 @@ class App extends Component {
   // Closure for customizer different function
   nameChangeHandler = (event,id)=>{
       const personIndex = this.state.persons.findIndex(p => {
-        return p.id === id;
+        return p.uid === id;
       });
       // Copy the value from state
       const person = {...this.state.persons[personIndex]};
@@ -95,14 +96,13 @@ class App extends Component {
       persons=(
         <div >
           {this.state.persons.map((person,index) =>{
-            return <Person 
+            return <ErrorBoundary key = {person.id}><Person 
               click = {()=>this.deletePersonHandler(index)}
               name={person.name}
               age = {person.age}
-              key = {person.id}
               // changed = {(event)=>this.nameChangeHandler(event)}
               changed = {(event)=>this.nameChangeHandler(event,person.id)}
-               />
+               /></ErrorBoundary> 
           })}
       </div>
       );
