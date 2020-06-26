@@ -1,8 +1,9 @@
 import React from 'react'
 import Person from "./Person/Person"
 
-const persons = (props)=>(
-    <div>
+const persons = (props)=>{
+    console.log('[Persons.js] rendering...')
+    return (<div>
           {props.persons.map((person, index) => {
             return (
               <Person
@@ -15,8 +16,8 @@ const persons = (props)=>(
               />
             );
           })}
-        </div>
-)
+        </div>)
+}
 
 
 
