@@ -21,7 +21,7 @@ class App extends Component {
 
   static getDerivedStateFromProps(props,state){
     console.log("[App.js] get getDerivedStateFromProps",props,state)
-    state = {...state}
+    // state = {showPersons:false}
     return state; // this method return an object to update state
   }
 
@@ -31,7 +31,8 @@ class App extends Component {
 
   shouldComponentUpdate(nextProps,nextState){
     console.log('[App.js] shouldComponentUpdate')
-    console.log(this.state.showPersons)
+    console.log("prev",this.state.showPersons)
+    console.log("next",nextState.showPersons)
     return true;
   }
 
