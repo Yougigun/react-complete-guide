@@ -5,6 +5,15 @@ import Aux from '../../../hoc/Auxiliary';
 import PropTypes from 'prop-types'
 
 class Person extends Component {
+  constructor(props){
+    super(props);
+    this.inputElmentRef = React.createRef();
+  }
+  componentDidMount(){
+    console.log("[Person.js] componentDidMount")
+    // this.inputElment.focus()
+    this.inputElmentRef.current.focus();
+  }
   render() {
     console.log('[Person.js] rendering...');
     return (
@@ -14,7 +23,9 @@ class Person extends Component {
       </p>
       <p key="i2" >{this.props.children}</p>
       <input
-        key = "i3"
+        key="i3"
+        // ref={(inputEl)=>{this.inputElment = inputEl}}
+        ref = {this.inputElmentRef}
         type="text"
         onChange={this.props.changed}
         value={this.props.name}
