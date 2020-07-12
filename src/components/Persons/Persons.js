@@ -1,4 +1,4 @@
-import React, { Component,PureComponent} from 'react';
+import React, { Component, PureComponent } from 'react';
 
 import Person from './Person/Person';
 
@@ -45,7 +45,7 @@ class Persons extends PureComponent {
     console.log('[Persons.js] componentWillUnmount');
   }
 
-  componentDidMount(){
+  componentDidMount() {
     // document.querySelector("input").focus()
   }
   render() {
@@ -58,10 +58,10 @@ class Persons extends PureComponent {
           age={person.age}
           key={person.id}
           changed={event => this.props.changed(event, person.id)}
-          isAuth={this.props.isAuthenticated}
         />
-      );
-    });
+      )
+    }
+    )
   }
 }
 
