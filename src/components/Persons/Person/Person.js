@@ -5,11 +5,11 @@ import Aux from '../../../hoc/Auxiliary';
 import PropTypes from 'prop-types'
 
 class Person extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.inputElmentRef = React.createRef();
   }
-  componentDidMount(){
+  componentDidMount() {
     console.log("[Person.js] componentDidMount")
     // this.inputElment.focus()
     this.inputElmentRef.current.focus();
@@ -18,20 +18,21 @@ class Person extends Component {
     console.log('[Person.js] rendering...');
     return (
       <Aux>
-      <p key="i1" onClick={this.props.click}>
-        I'm {this.props.name} and I am {this.props.age} years old!
+        {this.props.isAuth ? <p>Authenticated!</p>:<p>Please log in</p>}
+        <p key="i1" onClick={this.props.click}>
+          I'm {this.props.name} and I am {this.props.age} years old!
       </p>
-      <p key="i2" >{this.props.children}</p>
-      <input
-        key="i3"
-        // ref={(inputEl)=>{this.inputElment = inputEl}}
-        ref = {this.inputElmentRef}
-        type="text"
-        onChange={this.props.changed}
-        value={this.props.name}
-      />
+        <p key="i2" >{this.props.children}</p>
+        <input
+          key="i3"
+          // ref={(inputEl)=>{this.inputElment = inputEl}}
+          ref={this.inputElmentRef}
+          type="text"
+          onChange={this.props.changed}
+          value={this.props.name}
+        />
       </Aux>
-      )
+    )
   }
 }
 
@@ -41,5 +42,5 @@ Person.propTypes = {
   age: PropTypes.number,
   changed: PropTypes.func
 
-} ;
-export default withClass(Person,classes.Person);
+};
+export default withClass(Person, classes.Person);
