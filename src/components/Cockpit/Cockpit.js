@@ -1,14 +1,18 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 import classes from './Cockpit.module.css';
 
 const Cockpit = props => {
+
+  // const toggleBtnRef = React.createRef(); // catnnot work in funv
+  const toggleBtnRef = useRef(null)
+
   useEffect(() => {
     console.log('[Cockpit.js] useEffect');
-    // Http request...
-    setTimeout(() => {
-      alert('Saved data to cloud!');
-    }, 1000);
+    // // Http request...
+    // setTimeout(() => {
+    //   alert('Saved data to cloud!');
+    // }, 1000);
     return () => {
       console.log('[Cockpit.js] cleanup work in useEffect');
     };
@@ -20,6 +24,11 @@ const Cockpit = props => {
       console.log('[Cockpit.js] cleanup work in 2nd useEffect');
     };
   });
+
+  useEffect(()=>{
+    console.log('[Cockpit.js] toggleBtnRef in useEffect');
+    toggleBtnRef.current.click()
+  },[])
 
   // useEffect();
 
@@ -40,7 +49,7 @@ const Cockpit = props => {
     <div className={classes.Cockpit}>
       <h1>{props.title}</h1>
       <p className={assignedClasses.join(' ')}>This is really working!</p>
-      <button className={btnClass} onClick={props.clicked}>
+      <button ref={toggleBtnRef}  className={btnClass} onClick={props.clicked}>
         Toggle Persons
       </button>
     </div>
